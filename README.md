@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Quantum-Inspired Secure Image Steganography Platform
 ## Complete Setup & Run Guide
 
@@ -166,3 +167,7 @@ Stego image (visually identical, contains hidden encrypted data)
 Attacker gets the image → sees a normal photo → no idea anything is hidden.
 Even if they suspect steganography → ciphertext is still AES encrypted.
 = Dual layer security.
+=======
+# Quantum-Stego
+ Securely hiding encrypted messages inside images using quantum inspired security concepts.
+>>>>>>> 4651e0c1627d277acbb53dc4d13bfc8e3699bdf9
