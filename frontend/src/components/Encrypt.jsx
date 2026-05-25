@@ -196,7 +196,7 @@ function Encrypt({ keyData, setKeyData }) {
           <div className="key-info">
             <p><strong>Key ID:</strong> <code>{keyData.key_id}</code></p>
             <p className="warning-text">
-              ⚠ Save this Key ID — you need it to decrypt the message later!
+              Save this Key ID — you need it to decrypt the message later!
             </p>
             {/* Quantum bits visualization */}
             <div className="bits-label">Quantum measurement output (first 64 bits):</div>
