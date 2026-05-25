@@ -9,8 +9,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000";
-
+const API_URL = "https://quantum-stego-wk2f.onrender.com";
 function Decrypt({ keyData }) {
   // Props:
   // keyData → shared from App.js (from Encrypt.jsx when key was generated)

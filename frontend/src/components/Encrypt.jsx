@@ -13,8 +13,7 @@ import axios from "axios";
 
 // The FastAPI backend URL
 // Make sure backend is running on this address before using the app
-const API_URL = "http://127.0.0.1:8000";
-
+const API_URL = "https://quantum-stego-wk2f.onrender.com";
 function Encrypt({ keyData, setKeyData }) {
   // Props:
   // keyData    → current quantum key info (null if not generated yet)
