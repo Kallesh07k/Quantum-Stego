@@ -43,8 +43,10 @@ app = FastAPI(
 # ── Configure CORS (Cross-Origin Resource Sharing) ────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=[
+        "https://quantum-stego-mu.vercel.app"
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
