@@ -2,7 +2,8 @@ fastapi==0.110.0
 uvicorn==0.29.0
 python-multipart==0.0.9
 cryptography==42.0.5
-opencv-python-headless==4.9.0.80
-numpy>=2.2.0
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
 qiskit
 qiskit-aer
+Pillow
