@@ -173,8 +173,3 @@ App runs at: http://localhost:5173
 - Mobile app (React Native)
 
 ---
-
-
-
-[![GitHub](https://img.shields.io/badge/GitHub-Kallesh07k-181717?style=for-the-badge&logo=github)](https://github.com/Kallesh07k)
-
