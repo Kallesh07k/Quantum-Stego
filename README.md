@@ -1,173 +1,180 @@
-<<<<<<< HEAD
-# Quantum-Inspired Secure Image Steganography Platform
-## Complete Setup & Run Guide
+<div align="center">
+
+# ⚛️ Quantum-Stego
+
+### Securely hide encrypted messages inside images
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_App-blue?style=for-the-badge)](https://quantum-stego-mu.vercel.app)
+[![API Docs](https://img.shields.io/badge/API_Docs-Swagger_UI-orange?style=for-the-badge)](https://quantum-stego-wk2f.onrender.com/docs)
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org)
+
+</div>
 
 ---
 
-## PROJECT STRUCTURE
+## 📌 Overview
+
+**Quantum-Stego** is a full-stack web application that combines **Quantum-Inspired Key Generation**, **AES Encryption**, and **LSB Image Steganography** to create a dual-layer secure communication system.
+
+A secret message is encrypted using a quantum-generated key, then invisibly embedded into a PNG image. The resulting stego image looks completely normal — with no visible trace of hidden data. Even if steganography is suspected, the message remains AES-encrypted without the Key ID.
 
 ```
-QuantumProject/
-│
+Secret Message
+      ↓
+Quantum Key Generation (Qiskit)
+      ↓
+AES Fernet Encryption → Ciphertext
+      ↓
+LSB Embed into Image Pixels
+      ↓
+Stego Image (visually identical to original)
+```
+
+---
+
+## ✅ Features
+
+- ⚛️ Quantum-inspired key generation using Qiskit simulation
+- 🔐 AES Fernet encryption for secure message protection
+- 🖼️ LSB steganography — hides data invisibly in image pixels
+- 🔓 Full extraction and decryption workflow
+- ⚡ FastAPI backend with Swagger documentation
+- 🌐 React frontend deployed on Vercel
+- ☁️ Fully cloud-deployed and accessible from any device
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React.js, Vite, Axios |
+| Backend | FastAPI, Python, Uvicorn |
+| Quantum Key | Qiskit, Qiskit AerSimulator |
+| Encryption | Cryptography — Fernet (AES) |
+| Image Processing | OpenCV, NumPy, Pillow |
+| Deployment | Vercel (frontend), Render (backend) |
+
+---
+
+## 📁 Project Structure
+
+```
+Quantum-Stego/
 ├── backend/
-│   ├── main.py                   ← FastAPI server (run this)
-│   ├── requirements.txt          ← pip install list
-│   ├── uploads/                  ← temp image folder (auto-created)
-│   │
+│   ├── main.py                  ← FastAPI routes
+│   ├── requirements.txt
 │   ├── quantum/
-│   │   ├── __init__.py
-│   │   └── quantum_key.py        ← Qiskit 256-qubit key generator
-│   │
+│   │   └── quantum_key.py       ← Qiskit key generator
 │   ├── encryption/
-│   │   ├── __init__.py
-│   │   └── aes_encrypt.py        ← Fernet AES encrypt/decrypt
-│   │
+│   │   └── aes_encrypt.py       ← AES encrypt / decrypt
 │   └── steganography/
-│       ├── __init__.py
-│       └── stego.py              ← LSB hide/extract
+│       └── stego.py             ← LSB hide / extract
 │
 └── frontend/
-    ├── index.html                ← HTML shell
-    ├── package.json              ← npm dependencies
-    ├── vite.config.js            ← Vite config
-    └── src/
-        ├── main.jsx              ← React entry point
-        ├── App.js                ← Root component + tab nav
-        ├── App.css               ← All styles
-        └── components/
-            ├── Encrypt.jsx       ← Encrypt & Hide panel
-            └── Decrypt.jsx       ← Extract & Decrypt panel
+    ├── src/
+    │   ├── App.js
+    │   └── components/
+    │       ├── Encrypt.jsx       ← Encrypt & Hide panel
+    │       └── Decrypt.jsx       ← Extract & Decrypt panel
+    └── package.json
 ```
 
 ---
 
-## STEP 1 — SET UP BACKEND
+## 🚀 Local Setup
+
+### Prerequisites
+- Python 3.9+
+- Node.js 18+
+
+### Backend
 
 ```bash
-# Navigate to backend folder
-cd QuantumProject/backend
-
-# Create Python virtual environment
+cd backend
 python -m venv venv
 
-# Activate virtual environment
-# On Windows:
+# Activate — Windows:
 venv\Scripts\activate
-# On Mac/Linux:
+# Activate — macOS/Linux:
 source venv/bin/activate
 
-# Install all dependencies
 pip install -r requirements.txt
-
-# Create uploads folder (if not exists)
-mkdir uploads
-
-# Start the FastAPI server
 uvicorn main:app --reload --port 8000
 ```
 
-You should see:
-```
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process
-```
+Backend runs at: http://127.0.0.1:8000  
+Swagger docs at: http://127.0.0.1:8000/docs
 
-Test it works: Open http://127.0.0.1:8000 → should see {"status": "ok", ...}
-API docs:     Open http://127.0.0.1:8000/docs → Swagger UI
+### Frontend
 
----
-
-## STEP 2 — SET UP FRONTEND
-
-Open a NEW terminal (keep backend running in the first one):
+Open a **new terminal:**
 
 ```bash
-# Navigate to frontend folder
-cd QuantumProject/frontend
-
-# Install Node.js packages
+cd frontend
 npm install
-
-# Start the React dev server
 npm run dev
 ```
 
-You should see:
-```
-VITE v5.x  ready in 300ms
-➜  Local:   http://localhost:5173/
-```
-
-Open http://localhost:5173 in your browser.
+App runs at: http://localhost:5173
 
 ---
 
-## STEP 3 — USE THE APP
+## 📖 How to Use
 
-### Encrypting a message:
-1. Click "⚛ Generate Quantum Key" → wait for Qiskit to run (~5-15 seconds)
-2. Note the Key ID displayed (save it!)
-3. Click "📁 Choose Image" → select any PNG/JPG image
-4. Type your secret message in the textarea
-5. Click "🔐 Encrypt & Hide Message"
-6. Download the stego PNG image
+### 🔐 Encrypt a Message
+1. Click **Generate Quantum Key** — wait 5–15 seconds for Qiskit to run
+2. **Save the Key ID** shown — you'll need it to decrypt
+3. Upload a PNG image (512×512 px or larger)
+4. Type your secret message and click **Encrypt & Hide**
+5. Download the stego image
 
-### Decrypting a message:
-1. Switch to "🔓 Extract & Decrypt" tab
-2. Upload the stego PNG image
-3. Paste the Key ID (auto-filled if same session)
-4. Click "🔓 Extract & Decrypt Message"
-5. See the original secret message
+### 🔓 Decrypt a Message
+1. Switch to the **Extract & Decrypt** tab
+2. Upload the stego image and enter the Key ID
+3. Click **Extract & Decrypt** to reveal the original message
+
+> ⚠️ **PNG only** — JPEG compression destroys the hidden LSB data.
 
 ---
 
-## TROUBLESHOOTING
+## 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Health check |
+| GET | `/generate-key` | Generate quantum key → returns `key_id` |
+| POST | `/encrypt` | Encrypt message and embed into image |
+| POST | `/decrypt` | Extract and decrypt hidden message |
+| GET | `/docs` | Swagger UI |
+
+---
+
+## 🛠️ Troubleshooting
 
 | Problem | Solution |
 |---------|----------|
-| `ModuleNotFoundError: qiskit` | Run `pip install qiskit qiskit-aer` |
-| `Cannot read image` | Check file path, try a different image format |
-| `Delimiter not found` | Image was saved as JPEG — must use PNG |
+| `ModuleNotFoundError: qiskit` | `pip install qiskit qiskit-aer` |
+| `Delimiter not found` | Use PNG — not JPEG |
 | `Invalid key_id` | Server restarted — generate a new key |
-| CORS error in browser | Make sure backend is on port 8000, frontend on 5173 |
-| `npm: command not found` | Install Node.js from https://nodejs.org |
-| Qiskit takes too long | Normal — simulating 256 qubits takes 5-20 seconds |
-| Image too small error | Use a larger image (512×512 or bigger) |
+| Qiskit is slow | Normal — quantum simulation takes 5–20 sec |
+| Image too small | Use an image at least 512×512 px |
+| Backend cold start | Render free tier — wait 30–60 sec on first request |
 
 ---
 
-## API ENDPOINTS
+## 🔮 Future Enhancements
 
-| Method | URL | Purpose |
-|--------|-----|---------|
-| GET | /generate-key | Run quantum circuit, return key_id |
-| POST | /encrypt | Hide encrypted message in image |
-| POST | /decrypt | Extract and decrypt hidden message |
-| GET | / | Health check |
-| GET | /docs | Swagger UI (auto-generated) |
+- Real quantum hardware via IBM Quantum Network
+- JWT authentication and user accounts
+- Database storage for keys and message history
+- Video and audio steganography support
+- Mobile app (React Native)
 
 ---
 
-## HOW THE SECURITY WORKS
 
-```
-Secret message: "Meet at gate B7"
-        ↓
-[AES Fernet encrypt with quantum key]
-        ↓
-Ciphertext: "gAAAAABo7sjkL9d..." (unreadable)
-        ↓
-[Convert to binary: 01001000...]
-        ↓
-[LSB embed into image pixels]
-        ↓
-Stego image (visually identical, contains hidden encrypted data)
-```
 
-Attacker gets the image → sees a normal photo → no idea anything is hidden.
-Even if they suspect steganography → ciphertext is still AES encrypted.
-= Dual layer security.
-=======
-# Quantum-Stego
- Securely hiding encrypted messages inside images using quantum inspired security concepts.
->>>>>>> 4651e0c1627d277acbb53dc4d13bfc8e3699bdf9
+[![GitHub](https://img.shields.io/badge/GitHub-Kallesh07k-181717?style=for-the-badge&logo=github)](https://github.com/Kallesh07k)
+
