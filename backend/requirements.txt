@@ -1,0 +1,8 @@
+fastapi==0.110.0
+uvicorn==0.29.0
+python-multipart==0.0.9
+cryptography==42.0.5
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+qiskit==1.0.2
+qiskit-aer==0.14.2
