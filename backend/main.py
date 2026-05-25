@@ -10,6 +10,7 @@ import shutil
 from pathlib import Path
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+
 # FastAPI    → the web framework
 # File       → represents an uploaded file in the request
 # UploadFile → wraps the file with metadata (filename, content_type)
@@ -39,13 +40,17 @@ app = FastAPI(
 # React runs on http://localhost:5173
 # FastAPI runs on http://localhost:8000
 # Without CORS, browser blocks the communication
+# ── Configure CORS (Cross-Origin Resource Sharing) ────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
-    # allow_origins=["*"] → allows ALL origins (fine for development, not production)
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://quantum-stego-mu.vercel.app"
+    ],
     allow_credentials=True,
-    allow_methods=["*"],    # Allow GET, POST, PUT, DELETE etc.
-    allow_headers=["*"],    # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ── Create uploads directory ──────────────────────────────────────────────
